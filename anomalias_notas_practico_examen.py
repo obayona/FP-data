@@ -27,14 +27,19 @@ for semestre in semestres:
 
 
 #Practica < 40 y Examen > 70
-x = examen[practico<40]
-cant1 = (x>70).size
+cant1 = 0
+for i,p in enumerate(practico):
+	e = examen[i]
+	if(p<=40 and e >= 70):
+		cant1 +=1
 
 
 #Practica > 70 y Examen < 40
-x = examen[practico>70]
-cant2 = (x<40).size
-
+cant2 = 0
+for i,p in enumerate(practico):
+	e = examen[i]
+	if(p>=70 and e <= 40):
+		cant2 +=1
 
 
 fig,ax = plt.subplots(1)
