@@ -83,26 +83,28 @@ def createHist(titulo,notas):
 	axes.set_ylabel('Frecuencia')
 	axes.set_xlabel('Calificaciones')
 
-semestres = ["2017-1T","2017_2T","2018_1T","2018_2T"]
 
 
-for semestre in semestres:
-	fileName = join("modificados",semestre + ".csv")
-	data_dict, header = loadData(fileName)
-	matriculas,final_notes = getAttrs(data_dict,"final")
-	final_notes = final_notes[np.logical_not(np.isnan(final_notes))]
-	#final_notes = final_notes[np.logical_and(final_notes>=0, final_notes<=100)]
 
-	matriculas,ap = getAttrs(data_dict,"AP")
-	print((ap=="True").sum(), ap.size)
-	ap_percent = float((ap=="True").sum())/float(ap.size)
+if __name__== "__main__": 
+	semestres = ["2017-1T","2017_2T","2018_1T","2018_2T"]
+	for semestre in semestres:
+		fileName = join("modificados",semestre + ".csv")
+		data_dict, header = loadData(fileName)
+		matriculas,final_notes = getAttrs(data_dict,"final")
+		final_notes = final_notes[np.logical_not(np.isnan(final_notes))]
+		#final_notes = final_notes[np.logical_and(final_notes>=0, final_notes<=100)]
 
-	print("Semestre ",semestre)
-	print("Promedio: ", final_notes.mean())
-	print("AP %", ap_percent*100)
-	print("_"*20)
-	createHist(semestre,final_notes)
+		matriculas,ap = getAttrs(data_dict,"AP")
+		print((ap=="True").sum(), ap.size)
+		ap_percent = float((ap=="True").sum())/float(ap.size)
 
-plt.show()
+		print("Semestre ",semestre)
+		print("Promedio: ", final_notes.mean())
+		print("AP %", ap_percent*100)
+		print("_"*20)
+		createHist(semestre,final_notes)
+
+	plt.show()
 
 
